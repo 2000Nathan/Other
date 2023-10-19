@@ -1,11 +1,15 @@
-const express = require("express")
+const express = require("express");
+import router from './src/routes';
+
 const app = express();
 
-const example = function(){
-    console.log("***********estoy a la escucha*******");
+const port = 9000;
+
+
+const initilize = () => {
+    console.log(`Server is running on port ${port}`);
 }
 
-app.listen(
-    9000,
-    example
-)
+router(app);
+
+app.listen(port ,initilize);

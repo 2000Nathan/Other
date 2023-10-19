@@ -1,0 +1,4 @@
+GET -> obtener datos
+PUT -> actualizar datos
+PATCH -> actualizar datos
+DELETE -> eliminar datos
