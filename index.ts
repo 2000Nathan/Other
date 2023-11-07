@@ -1,15 +1,18 @@
-const express = require("express");
-import router from './src/routes';
+import routes from "./src/network";
 
-const app = express();
+const express = require("express");
+
+const server = express();
+routes(server);
 
 const port = 9000;
 
-
+// Inicializa el servidor
 const initilize = () => {
     console.log(`Server is running on port ${port}`);
 }
 
-router(app);
+// Inicializa el servidor
+routes(server);
 
-app.listen(port ,initilize);
+server.listen(port ,initilize);

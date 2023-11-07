@@ -1,7 +1,7 @@
 /* contiene urls finales de cada endpoint */
 import  express, { Request, Response}  from "express";
 
-//se crea un objeto router
+//se crea un objeto router que contiene las rutas de los endpoints 
 const router = express.Router();
 
 //se crea un metodo getUserByEmail que recibe un request y un response y retorna un mensaje con el email del usuario 
