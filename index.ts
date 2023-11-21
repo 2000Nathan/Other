@@ -1,9 +1,13 @@
-import routes from "./src/network";
-
 const express = require("express");
+import routes from "./src/network";
+import { init } from "./src/services/serviceLocator/composer";
 
-const server = express();
-routes(server);
+
+const app = express();
+
+init();
+
+
 
 const port = 9000;
 
@@ -13,6 +17,6 @@ const initilize = () => {
 }
 
 // Inicializa el servidor
-routes(server);
+routes(app);
 
-server.listen(port ,initilize);
+app.listen(port ,initilize);
