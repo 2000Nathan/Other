@@ -1,4 +1,4 @@
-import { Connection } from "mysql2";
+import { Connection } from "mysql2/promise";
 import { DependencyLocator } from "./dependenciesLocator";
 import database from "../database";
 import { UserUtils } from "../../utils/users";
@@ -15,8 +15,9 @@ function getDatabase(): Connection {
     return di.get(types.database);
 }
 
-export function init() {
-    di.bindLazySingleton(types.database, () => database)
+export async  function init() {
+    const db = await database;
+    di.bindLazySingleton(types.database, () => db)
     di.bindFactory(types.users, () => new UserUtils(getDatabase()));
 }
 

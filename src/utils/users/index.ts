@@ -1,4 +1,4 @@
-import { Connection }  from "mysql2";
+import { Connection }  from "mysql2/promise";
 import redis from "../../services/redis";
 import { NewuserFields } from "../../interfaces";
 
@@ -11,7 +11,7 @@ export class UserUtils {
 
     public async getUserByEmail(email: string): Promise<NewuserFields | string> {
         const query = `SELECT * FROM users WHERE email = '${email}'`;
-        const [rows] = await this.database.promise().query(query);
+        const [rows] = await this.database.query(query);
         if (Array.isArray(rows) && rows.length === 0) {
             return `User with email ${email} not found`
         }
@@ -24,7 +24,7 @@ export class UserUtils {
             return JSON.parse(existCahce);
         }
         const query = `SELECT * FROM users`;
-        const [rows, fields] = await this.database.promise().query(query);
+        const [rows, fields] = await this.database.query(query);
         const sendable = {
             rows,
             fields

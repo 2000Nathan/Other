@@ -9,7 +9,10 @@ function getUserByEmail(req: Request, res: Response) {
     const { email } = req.query;
      Controller.getUserByEmail(email.toString())
      .then((result) => res.send(result))
-     .catch((error) => res.send(error));
+     .catch((error) => {res.send(error)
+        console.log(error)
+    
+    });
 }
 
 //se crea un endpoint que recibe un email y retorna un mensaje con el email del usuario 
