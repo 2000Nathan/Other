@@ -5,6 +5,7 @@ enum genderTypes {
 }
 
 export interface NewuserFields {
+
     names: string;
     lastnames: string;
     age: number;
@@ -18,4 +19,11 @@ export interface NewuserFields {
         iso: string;
 
     }| null;
+}
+
+export type NewUserRegister = {
+    names: string;
+    lastNames: string;
+    password: string;
+    email: string;
 }

@@ -1,6 +1,7 @@
 import { Connection }  from "mysql2/promise";
 import redis from "../../services/redis";
-import { NewuserFields } from "../../interfaces";
+import { NewUserRegister, NewuserFields } from "../../interfaces";
+import CryptoJS from 'crypto-js';
 
 export class UserUtils {
     private database : Connection;
@@ -33,5 +34,18 @@ export class UserUtils {
         const todayEnd = new Date().setHours(23, 59, 59, 999);
         (await redis).expireAt("allUsers", todayEnd/1000);
         return sendable;
+    }
+
+    public async newUser(params: NewUserRegister): Promise<any> {
+        const {
+            names,
+            lastNames,
+            password,
+            email,
+         }= params;
+        
+        const hash = CryptoJS.AES.encrypt(password, process.env.SECRET_KEY || '').toString()
+        const query = "INSERT INTO users (names, lastNames, email, password) VALUES (?,?,?,?)";
+        //this.database.query(query, [names, lastNames, email, password])
     }
 }
